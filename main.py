@@ -10,7 +10,7 @@ from rock_paper_scissors import RockPaperScissors
 def main(args):
     trn_loader, val_loader, tst_loader = get_loaders(args.batch_size)
 
-    model_path = os.path.join(args.results_path, args.exp_name, 'trained_model.pth')
+    model_path = os.path.join(args.model_path, 'trained_model.pth')
     model = get_model(args.model_name)
     appr = LearningApproach(args.model_name, model, args.num_epochs)
 
@@ -29,7 +29,7 @@ def main(args):
     # Evaluation
     appr.eval(tst_loader)
     # Save test results
-    print('Save at ' + os.path.join(args.results_path, args.exp_name))
+    print('Save at ' + os.path.join(args.model_path))
 
     # Rock, Paper, Scissors
     RockPaperScissors(model, args.alpha, args.gamma, args.epsilon).game()
@@ -38,10 +38,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Example Python Framework")
 
     # Training arguments
-    parser.add_argument("--results_path", type=str, default='../results', help="Results path")
-    parser.add_argument("--exp_name", type=str, default='test', help="Experiment name")
+    parser.add_argument("--model_path", type=str, default='../gesture-recognition-model', help="Path for saved model")
+    # parser.add_argument("--exp_name", type=str, default='saved-model', help="Experiment name")
+    parser.add_argument("--retrain", type=str, default=True, help="Retrain saved model or use saved model")
     parser.add_argument("--model_name", type=str, default='LSTM', help="Name of the model to use")
-    parser.add_argument("--retrain", type=str, default=False, help="Retrain saved model or use saved model")
     parser.add_argument("--learning_rate", type=float, default=0.001, help="Learning rate for training")
     parser.add_argument("--batch_size", type=float, default=128, help="Batch size for training")
     parser.add_argument("--num_epochs", type=float, default=30, help="Number of epochs for training")
