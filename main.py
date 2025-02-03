@@ -39,7 +39,6 @@ if __name__ == "__main__":
 
     # Training arguments
     parser.add_argument("--model_path", type=str, default='../gesture-recognition-model', help="Path for saved model")
-    # parser.add_argument("--exp_name", type=str, default='saved-model', help="Experiment name")
     parser.add_argument("--retrain", type=str, default=True, help="Retrain saved model or use saved model")
     parser.add_argument("--model_name", type=str, default='LSTM', help="Name of the model to use")
     parser.add_argument("--learning_rate", type=float, default=0.001, help="Learning rate for training")
